@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    
+     <declare-styleable name="GridItem">   
+        <attr name="icon" format="reference"/>
+        <attr name="text" format="string"/>
+        <attr name="textSize" format="integer"></attr>
+        <!-- 设置背景颜色 -->
+        <attr name="background" format="reference|color"></attr>
+    </declare-styleable>
+    
+    
+    <!-- <declare-styleable name="PieChart">
+        <attr name="autoCenterPointerInSlice" format="boolean"/>
+        <attr name="highlightStrength" format="float"/>
+        <attr name="labelColor" format="color"/>
+        <attr name="labelHeight" format="dimension"/>
+        <attr name="labelPosition" format="enum">
+            <enum name="left" value="0"/>
+            <enum name="right" value="1"/>
+        </attr>
+        <attr name="labelWidth" format="dimension"/>
+        <attr name="labelY" format="dimension"/>
+        <attr name="pieRotation" format="integer"/>
+        <attr name="pointerRadius" format="dimension"/>
+        <attr name="showText" format="boolean"/>
+    </declare-styleable> -->
+    
+    
+   
+    
+    
+    <!--
+	<declare-styleable name="DateTimeRangeView">   
+        <attr name="timeformat">
+           <enum name="YEAR_MONTH_DAY_HOUR_MINUTE" value="0"/> 
+           <enum name="YEAR_MONTH_DAY" value="1"/>
+           <enum name="YEAR_MONTH" value="2"/>
+           <enum name="HOUR_MINUTE" value="3"/>
+           <enum name="YEAR_MONTH_DAY_HOUR_MINUTE_SECOND" value="4"/>
+        </attr> 
+        <attr name="startText" format="string" />   
+        <attr name="endText" format="string" />  
+        <attr name="contentView" format="integer" />
+		<attr name="startDateEditRid" format="integer" />
+		<attr name="endDateEditRid" format="integer" />
+    </declare-styleable> 
+    
+	 <declare-styleable name="TabView">   
+        <attr name="tabloc">
+            <enum name="top" value="0"/>
+            <enum name="bottom" value="1"/>   
+        </attr>
+    </declare-styleable>
+    
+	 <declare-styleable name="LoginView">
+	     <attr name="view" format="integer"/>
+	 </declare-styleable>
+     
+	 <declare-styleable name="HttpImageView">
+	     <attr name="default_drawable" format="reference" />
+	 </declare-styleable>
+	 
+	 <declare-styleable name="PagerBarView">
+	    <attr name="contentViewResourceId" format="integer" />
+	</declare-styleable>
+	<declare-styleable name="CalendarView">
+	    <attr name="item_default_background" format="reference|color" />
+	    <attr name="item_selected_background" format="reference|color" />
+	    <attr name="item_today_background" format="reference|color" />
+	    <attr name="item_head_background" format="reference|color"/>
+	</declare-styleable> 
+    -->
+
+</resources>
