@@ -88,6 +88,8 @@
         <activity android:name="com.activity.sameid.TestSameIdActivity" />
         <activity android:name="com.activity.TestDateUtilsActivity" />
         <activity android:name="com.activity.safeproguard.AppListActivity" />
+        <activity android:name="com.activity.TestCustomView" />
+        
         
         
         
