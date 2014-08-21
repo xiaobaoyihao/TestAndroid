@@ -16,6 +16,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.activity.TestAnimationActiivty;
+import com.activity.TestBaseAdapterGetViewTypeActivity;
 import com.activity.TestBottomTouchActivity;
 import com.activity.TestCropPictureActivity;
 import com.activity.TestCustomView;
@@ -84,6 +85,7 @@ public class IndexActivity extends Activity implements OnItemClickListener{
 		data.add(new Item("TestDateUtils",TestDateUtilsActivity.class));
 		data.add(new Item("safeProguard",AppListActivity.class));
 		data.add(new Item("TestCustomView onMeasure",TestCustomView.class));
+		data.add(new Item("TestBaseAdapterGetViewType",TestBaseAdapterGetViewTypeActivity.class));
 		
 		
 		
