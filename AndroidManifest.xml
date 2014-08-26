@@ -90,12 +90,7 @@
         <activity android:name="com.activity.safeproguard.AppListActivity" />
         <activity android:name="com.activity.TestCustomView" />
         <activity android:name="com.activity.TestBaseAdapterGetViewTypeActivity" />
-        
-        
-        
-        
-        
-        
+        <activity android:name="com.activity.TestCustomTabViewActivity" />
         
         
         

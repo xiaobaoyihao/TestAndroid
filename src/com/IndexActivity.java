@@ -19,6 +19,7 @@ import com.activity.TestAnimationActiivty;
 import com.activity.TestBaseAdapterGetViewTypeActivity;
 import com.activity.TestBottomTouchActivity;
 import com.activity.TestCropPictureActivity;
+import com.activity.TestCustomTabViewActivity;
 import com.activity.TestCustomView;
 import com.activity.TestDateUtilsActivity;
 import com.activity.TestIntentFilterActivity;
@@ -86,6 +87,7 @@ public class IndexActivity extends Activity implements OnItemClickListener{
 		data.add(new Item("safeProguard",AppListActivity.class));
 		data.add(new Item("TestCustomView onMeasure",TestCustomView.class));
 		data.add(new Item("TestBaseAdapterGetViewType",TestBaseAdapterGetViewTypeActivity.class));
+		data.add(new Item("TestTabViewActivity",TestCustomTabViewActivity.class));
 		
 		
 		

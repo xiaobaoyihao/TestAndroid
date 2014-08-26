@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -21,17 +22,24 @@ public class TestBaseAdapterGetViewTypeActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.test_baseadapter_getviewtype_activity);
-		for (int i = 0; i < 30; i++) {
+		/*for (int i = 0; i < 30; i++) {
 			Entity item = new Entity();
 			item.id = i;
 			item.name = "name"+i;
 			
 			mList.add(item);
-		}
+		}*/
 		
 		
 		
 		mListView = (ListView)findViewById(R.id.mlist);
+		
+		TextView emptyView = new TextView(this);
+		emptyView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+		emptyView.setText("empty view2222");
+		emptyView.setVisibility(View.GONE);
+		
+		mListView.setEmptyView(findViewById(R.id.empty_list_item));
 		mListView.setAdapter(new MyAdapter());
 		
 	}

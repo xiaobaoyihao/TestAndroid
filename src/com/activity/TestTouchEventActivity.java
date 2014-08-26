@@ -49,6 +49,7 @@ public class TestTouchEventActivity extends Activity implements OnTouchListener,
 		return super.dispatchTouchEvent(event);
 	}
 
+	
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
 		switch (event.getAction()) {
@@ -67,9 +68,6 @@ public class TestTouchEventActivity extends Activity implements OnTouchListener,
 		return super.onTouchEvent(event);
 	}
 
-	private void onInterceptTouchEven() {
-
-	}
 
 	@Override
 	public boolean onTouch(View v, MotionEvent event) {
