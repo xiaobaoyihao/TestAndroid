@@ -15,6 +15,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.activity.TestAlarmActivity;
 import com.activity.TestAnimationActiivty;
 import com.activity.TestBaseAdapterGetViewTypeActivity;
 import com.activity.TestBottomTouchActivity;
@@ -27,6 +28,7 @@ import com.activity.TestLargePicActivity;
 import com.activity.TestLayoutAnimationActivity;
 import com.activity.TestLeftSlidCloseActivity;
 import com.activity.TestTouchEventActivity;
+import com.activity.TestViewPagerActivity;
 import com.activity.TestViewScrollActivity;
 import com.activity.safeproguard.AppListActivity;
 import com.activity.sameid.TestSameIdActivity;
@@ -88,6 +90,8 @@ public class IndexActivity extends Activity implements OnItemClickListener{
 		data.add(new Item("TestCustomView onMeasure",TestCustomView.class));
 		data.add(new Item("TestBaseAdapterGetViewType",TestBaseAdapterGetViewTypeActivity.class));
 		data.add(new Item("TestTabViewActivity",TestCustomTabViewActivity.class));
+		data.add(new Item("testViewpagerActivity", TestViewPagerActivity.class));
+		data.add(new Item("testAlarm", TestAlarmActivity.class));
 		
 		
 		

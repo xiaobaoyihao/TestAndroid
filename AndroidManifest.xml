@@ -91,6 +91,12 @@
         <activity android:name="com.activity.TestCustomView" />
         <activity android:name="com.activity.TestBaseAdapterGetViewTypeActivity" />
         <activity android:name="com.activity.TestCustomTabViewActivity" />
+        <activity android:name="com.activity.TestViewPagerActivity" />
+        <activity android:name="com.activity.TestAlarmActivity" />
+        
+        
+        <receiver android:name="com.activity.TestAlarmActivity.AlarmTask">
+        </receiver>
         
         
         
