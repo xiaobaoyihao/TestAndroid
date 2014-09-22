@@ -5,10 +5,14 @@ import java.util.List;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.ActivityManager;
+import android.app.ActivityManager.RunningTaskInfo;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -23,6 +27,7 @@ import com.activity.TestCropPictureActivity;
 import com.activity.TestCustomTabViewActivity;
 import com.activity.TestCustomView;
 import com.activity.TestDateUtilsActivity;
+import com.activity.TestDialogFragmentActivity;
 import com.activity.TestIntentFilterActivity;
 import com.activity.TestLargePicActivity;
 import com.activity.TestLayoutAnimationActivity;
@@ -30,6 +35,8 @@ import com.activity.TestLeftSlidCloseActivity;
 import com.activity.TestTouchEventActivity;
 import com.activity.TestViewPagerActivity;
 import com.activity.TestViewScrollActivity;
+import com.activity.TestWebViewActivity;
+import com.activity.actionbar.WeatherActivity;
 import com.activity.safeproguard.AppListActivity;
 import com.activity.sameid.TestSameIdActivity;
 import com.dingbaosheng.AActivity;
@@ -49,21 +56,22 @@ import com.dingbaosheng.TestViewPostMethodActivity;
 import com.dingbaosheng.ZouMaDengActivity;
 import com.dingbaosheng.selected.SelectedPictureActivty;
 
-public class IndexActivity extends Activity implements OnItemClickListener{
+public class IndexActivity extends Activity implements OnItemClickListener {
 
 	ListView listView;
 	ArrayAdapter<Item> adapter;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_index);
-		listView = (ListView)findViewById(R.id.listView);
-		
+		listView = (ListView) findViewById(R.id.listView);
+
 		List<Item> data = new ArrayList<Item>();
 		data.add(new Item("拍照", TakePictureActivity.class));
 		data.add(new Item("录音", AudioRecordTest.class));
 		data.add(new Item("录音2", Record2Activity.class));
-		data.add(new Item("http",TestHttpActivity.class));
+		data.add(new Item("http", TestHttpActivity.class));
 		data.add(new Item("选择联系人", TestGetSystemPhoneActivity.class));
 		data.add(new Item("contacts", GotoSelectContactActivity.class));
 		data.add(new Item("照片库", PicturesListActivity.class));
@@ -83,53 +91,55 @@ public class IndexActivity extends Activity implements OnItemClickListener{
 		data.add(new Item("左划关闭", TestLeftSlidCloseActivity.class));
 		data.add(new Item("测试底部划出动画", TestBottomTouchActivity.class));
 		data.add(new Item("测试View scrollTo scrollBy", TestViewScrollActivity.class));
-		data.add(new Item("layoutanimation",TestLayoutAnimationActivity.class));
-		data.add(new Item("TestSameIdActivity",TestSameIdActivity.class));
-		data.add(new Item("TestDateUtils",TestDateUtilsActivity.class));
-		data.add(new Item("safeProguard",AppListActivity.class));
-		data.add(new Item("TestCustomView onMeasure",TestCustomView.class));
-		data.add(new Item("TestBaseAdapterGetViewType",TestBaseAdapterGetViewTypeActivity.class));
-		data.add(new Item("TestTabViewActivity",TestCustomTabViewActivity.class));
+		data.add(new Item("layoutanimation", TestLayoutAnimationActivity.class));
+		data.add(new Item("TestSameIdActivity", TestSameIdActivity.class));
+		data.add(new Item("TestDateUtils", TestDateUtilsActivity.class));
+		data.add(new Item("safeProguard", AppListActivity.class));
+		data.add(new Item("TestCustomView onMeasure", TestCustomView.class));
+		data.add(new Item("TestBaseAdapterGetViewType", TestBaseAdapterGetViewTypeActivity.class));
+		data.add(new Item("TestTabViewActivity", TestCustomTabViewActivity.class));
 		data.add(new Item("testViewpagerActivity", TestViewPagerActivity.class));
 		data.add(new Item("testAlarm", TestAlarmActivity.class));
+		data.add(new Item("TestDialogFragmentActivity", TestDialogFragmentActivity.class));
+		data.add(new Item("TestwebviewAndJs", TestWebViewActivity.class));
+		data.add(new Item("TestActionBar", WeatherActivity.class));
 		
-		
-		
-		
-		
-		adapter = new ArrayAdapter<Item>(IndexActivity.this, android.R.layout.simple_list_item_1, data);
+		adapter = new ArrayAdapter<Item>(IndexActivity.this, android.R.layout.simple_list_item_1,
+				data);
 		listView.setAdapter(adapter);
 		listView.setOnItemClickListener(this);
-		
-		//初始化科大讯飞
+
+		Log.e("indexactivity", "topactivity:"+getTopActivity(this));
+		// 初始化科大讯飞
 	}
-	
+
 	/**
 	 * 检测是否读取联系人权限
+	 * 
 	 * @param context
 	 * @return
 	 */
-	public static boolean checkReadContactPermission(Context context){
+	public static boolean checkReadContactPermission(Context context) {
 		int hasPerm = context.getPackageManager().checkPermission(
-				Manifest.permission.READ_CONTACTS, 
-			    context.getPackageName());
-		
-		return  hasPerm == PackageManager.PERMISSION_GRANTED;
+				Manifest.permission.READ_CONTACTS, context.getPackageName());
+
+		return hasPerm == PackageManager.PERMISSION_GRANTED;
 	}
-	
-	public static boolean checkReadContactPermission2(Context context){
+
+	public static boolean checkReadContactPermission2(Context context) {
 		int hasPerm = context.checkCallingOrSelfPermission(Manifest.permission.READ_CONTACTS);
-		return  hasPerm == PackageManager.PERMISSION_GRANTED;
+		return hasPerm == PackageManager.PERMISSION_GRANTED;
 	}
-	
+
 	class Item {
 		String name;
 		Class<?> clazz;
-		
-		public Item(String name, Class<?> clazz){
+
+		public Item(String name, Class<?> clazz) {
 			this.name = name;
 			this.clazz = clazz;
 		}
+
 		@Override
 		public String toString() {
 			return name;
@@ -140,5 +150,30 @@ public class IndexActivity extends Activity implements OnItemClickListener{
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 		Item item = adapter.getItem(position);
 		startActivity(new Intent(this, item.clazz));
+	}
+
+	/** 判断当前应用是否是在后台运行 */
+	public static boolean isAppRunInBackground(final Context context) {
+		ActivityManager am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+		List<RunningTaskInfo> tasks = am.getRunningTasks(1);
+		if (!tasks.isEmpty()) {
+			ComponentName topActivity = tasks.get(0).topActivity;
+			if (!topActivity.getPackageName().equals(context.getPackageName())) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	
+	/** 判断当前应用是否是在后台运行 */
+	public static String getTopActivity(final Context context) {
+		ActivityManager am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+		List<RunningTaskInfo> tasks = am.getRunningTasks(1);
+		if (!tasks.isEmpty()) {
+			ComponentName topActivity = tasks.get(0).topActivity;
+			return topActivity.getClassName();
+		}
+		return "";
 	}
 }

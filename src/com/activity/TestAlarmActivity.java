@@ -6,6 +6,7 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.util.Log;
@@ -13,7 +14,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.IndexActivity;
 import com.dingbaosheng.R;
+import com.receiver.AlarmTask;
 
 /**
  * 轮询实现
@@ -26,6 +29,14 @@ public class TestAlarmActivity extends Activity {
 	Button mBtnStart;
 	Button mBtnCancel;
 
+	
+	private BroadcastReceiver mReceiver = new BroadcastReceiver() {
+		
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			test();
+		}
+	};
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +46,15 @@ public class TestAlarmActivity extends Activity {
 		mBtnStart = (Button) findViewById(R.id.btn_start);
 		mBtnCancel = (Button) findViewById(R.id.btn_cancel);
 		
+		IntentFilter intentFilter = new IntentFilter(AlarmTask.ACTION_REPEART2);
+		registerReceiver(mReceiver, intentFilter);
+		
+		
+		Log.e("testAlarmActivity", "topactivity:"+IndexActivity.getTopActivity(this));
 	}
+	
+	
+	
 
 	public void onStart(View view) {
 		
@@ -64,43 +83,17 @@ public class TestAlarmActivity extends Activity {
 		Log.e(TAG, "pendintent:"+pendingIntent);
 	}
 	
+	public void onFinish(View view){
+		finish();
+	}
 	
 	@Override
 	protected void onDestroy() {
+		unregisterReceiver(mReceiver);
 		super.onDestroy();
 	}
 	
-	public void test(int count){
+	public void test(){
 		Toast.makeText(this, "test function", Toast.LENGTH_SHORT).show();
-	}
-	
-	
-	private static int COUNT = 0;
-	
-	private class AlarmTask extends BroadcastReceiver {
-		public static final String ACTION_REPEART = "ACTION_REPEART";
-		
-		private Activity mActivity;
-		
-		public AlarmTask(Activity activity){
-			this.mActivity = activity;
-		}
-		
-		public AlarmTask() {
-			super();
-			// TODO Auto-generated constructor stub
-		}
-
-		@Override
-		public void onReceive(Context context, Intent intent) {
-			Log.e(TAG, ACTION_REPEART+ (context instanceof TestAlarmActivity));
-			COUNT++;
-			if(ACTION_REPEART.equals(intent.getAction())){
-				Toast.makeText(context, ACTION_REPEART+COUNT, Toast.LENGTH_SHORT).show();
-				
-				test(COUNT);
-			}
-		}
-
 	}
 }
